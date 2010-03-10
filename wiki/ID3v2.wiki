@@ -270,15 +270,17 @@ foreach (glob($directory . "/*.mp3") as $file) {
 One can run the script from a command prompt or terminal.
 
 ===Example #7: Version juggling===
-By default, the `ID3v2` class recognizes the version of the standard used to write the tag. When you write a new tag, the class defaults to the newest version 4.0. You can change this behaviour by giving an options array to the constructor as shown below.
+By default, the `ID3v2` class recognizes the version of the standard used to write the tag. For convenience, the class also converts all texts by default to UTF-8. When you write a new tag, the class defaults to the newest version 4.0. You can change this behaviour by giving an options array to the constructor as shown below.
 
 {{{
 <?php
 require_once("ID3v2.php");
 
-$id3 = new ID3v2(array("version" => 3.0));
+$id3 = new ID3v2(array("version" => 3.0, "encoding" => ID3_Encoding::ISO88591));
 $id3->tyer->text = "2000";
-$id3->write();                         // writes ID3v2.3.0 compliant tag
+$id3->write();                         // write ID3v2.3.0 compliant tag in ISO-8859-1
+                                       // encoding instead of the default UTF-8 which is
+                                       // not supported in ID3v2.3.0
 }}}
 
 It is also possible to change the version information on a read tag. However, you must be carefull not to leave any deprecated or unsupported frames to the tag.
@@ -287,9 +289,13 @@ It is also possible to change the version information on a read tag. However, yo
 <?php
 require_once("ID3v2.php");
 
-$id3 = new ID3v2("file.mp3");          // read  ID3v2.4.0 by default
+$id3 = new ID3v2("file.mp3", array("encoding", ID3_Encoding::ISO88591);
+                                       // read any version of the tag in ISO-8859-1
+                                       // encoding instead of the default UTF-8 which is
+                                       // not supported in ID3v2.3.0
+
 $id3->getHeader()->setVersion(3.0);
-$id3->write();                         // write ID3v2.3.0
+$id3->write();                         // write ID3v2.3.0 compliant tag
 }}}
 
 See the class documentation found in the source package for the documentation for all the available tag frames and their fields. Also, leave a comment if you come up with an idea for an example that would be nice to have added here!
