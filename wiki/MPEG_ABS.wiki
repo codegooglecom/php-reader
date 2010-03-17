@@ -1,11 +1,11 @@
-#summary The Programmer's Reference Guide: MPEG_ABS Class
+#summary The Programmer's Reference Guide: Zend_Media_Mpeg_Abs Class
 #labels Phase-Implementation
 
-=PHP-Reader Documentation: MPEG_ABS Class=
+=PHP-Reader Documentation: !Zend_Media_Mpeg_Abs Class=
 By [http://code.google.com/u/svollbehr/ svollbehr]
 
 ==Introduction==
-The `MPEG_ABS` class provides *a full implementation* of the MPEG Audio Bit Stream encoding format defined in MPEG-1 Audio (ISO/IEC 11172-3) and MPEG-2 Audio (ISO/IEC 13818-3) standards.
+The `Zend_Media_Mpeg_Abs` class provides *a full implementation* of the MPEG Audio Bit Stream encoding format defined in MPEG-1 Audio (ISO/IEC 11172-3) and MPEG-2 Audio (ISO/IEC 13818-3) standards.
 
 http://php-reader.googlegroups.com/web/reader.aux.mpeg-explained.png
 
@@ -19,36 +19,21 @@ Support for non-standard VBR header extensions or namely the XING, VBRI and LAME
 
 The class is capable of only reading bit stream information. Furthermore, the class is unable to decode the audio data found in the frames. You may, however, implement this functionality on top of what this class provides.
 
-==Table of Contents==
-  * [Help Introduction]
-  * [GeneralPurposeClasses General Purpose Classes]
-  * [ASF] Class
-  * [ID3v1] Class
-  * [ID3v2] Class
-  * *`MPEG_ABS` Class*
-  * [MPEG_PS] Class
-  * [ISO14496] Class
-  * [Magic] Class
-
-  * _[http://code.google.com/p/php-reader/issues/list?q=label:MPEG_ABS Issues]_
-
 ==Class Information==
-
 http://php-reader.googlegroups.com/web/reader.classdiagram.mpeg_abs.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
-  * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/MPEG/ABS.php
+  * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Mpeg/Abs.php
   * _Requirements:_
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Reader.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Reader/Exception.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Transform.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Twiddling.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/MPEG/Object.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/MPEG/Exception.php
-    * All class files under <[http://code.google.com/p/php-reader/downloads/list package]>/src/MPEG/ABS/ folder
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Io package
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Bit package
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Mpeg/Object.php
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Mpeg/Exception.php
+    * All class files under <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Mpeg/Abs/ folder
+
+  * _[http://code.google.com/p/php-reader/issues/list?q=label:MPEG Issues]_
 
 ==Examples==
-
 ===Example #1: Optimized for speed and low memory consumption===
 This class utilizes a technique called lazy data reading. In the lazy data reading mode all the audio frames are not necessarily read into the memory when first initialized the file. The play duration and bit rate information of the file can often be determined from the VBR headers or estimated by reading only a handful of frames from the beginning of the file. Even if all the frames are read to get the exact play duration and bitrate, the data they contain is left unread until the point you request it explicitly.
 
@@ -61,9 +46,9 @@ The following example shows the lazy data reading in action.
 
 {{{
 <?php
-require_once("MPEG/ABS.php");
+require_once 'Zend/Media/Mpeg/Abs.php'; // or using autoload
 
-$abs = new MPEG_ABS("file.(abs|mp1|mp2|mp3|..)");
+$abs = new Zend_Media_Mpeg_Abs("file.(abs|mp1|mp2|mp3|..)");
 
 echo "Estimated play duration: " . $abs->getFormattedLengthEstimate() . "\n";
 echo "Estimated bitrate:       " . $abs->getBitrateEstimate() . "\n";
@@ -84,9 +69,9 @@ As the first frame is always read no matter what the read mode is, one may recei
 
 {{{
 <?php
-require_once("MPEG/ABS.php");
+require_once 'Zend/Media/Mpeg/Abs.php'; // or using autoload
 
-$abs = new MPEG_ABS("file.(abs|mp1|mp2|mp3|..)");
+$abs = new Zend_Media_Mpeg_Abs("file.(abs|mp1|mp2|mp3|..)");
 $frame = $abs->frames[0];     // There is always at least 1 frame read in
 
 $mpeg_version  = array("MPEG 2.5", 2 => "MPEG 2", "MPEG 1");
@@ -118,9 +103,9 @@ The following example shows you how to test for header existence and access the 
 
 {{{
 <?php
-require_once("MPEG/ABS.php");
+require_once 'Zend/Media/Mpeg/Abs.php'; // or using autoload
 
-$abs = new MPEG_ABS("file.(abs|mp1|mp2|mp3|..)");
+$abs = new Zend_Media_Mpeg_Abs("file.(abs|mp1|mp2|mp3|..)");
 
 if ($abs->hasXingHeader()) {
   $frames = $abs->getXingHeader()->getFrames();             // or $abs->xingHeader->frames
@@ -141,7 +126,7 @@ if ($abs->hasVbriHeader()) {
 Please note that if any of the non-standard headers are contained within the first frame the frame itself does not contain further audio data and is hence also not considered as an audio frame.
 
 ===Example #4: Case study: How to graph VBR file bitrate distribution===
-In this example we go through how to use the `MPEG_ABS` class to determine the bitrate distribution of given audio file. Just to make the example a bit more interesting the bitrate information is graphed using Google Charts API.
+In this example we go through how to use the `Zend_Media_Mpeg_Abs` class to determine the bitrate distribution of given audio file. Just to make the example a bit more interesting the bitrate information is graphed using Google Charts API.
 
 First we need to determine the bitrate information. The Audio Bit Stream may contain various sets of bitrates depending on sampling frequency and layer.
   
@@ -149,30 +134,30 @@ The strategy here is to form an array of all the possible bitrate sets in it and
 
 {{{
 /* Open the Audio Bit Stream file for reading */
-$abs = new MPEG_ABS("test/test_vbr.mp3");
+$abs = new Zend_Media_Mpeg_Abs("file.(abs|mp1|mp2|mp3|..)");
 
 
 /* Determine bitrate distribution */
 $bitrates = array(
-  MPEG_ABS::SAMPLING_FREQUENCY_HIGH => array (
-    MPEG_ABS::LAYER_ONE   => array (
+  Zend_Media_Mpeg_Abs::SAMPLING_FREQUENCY_HIGH => array (
+    Zend_Media_Mpeg_Abs::LAYER_ONE   => array (
       32 => 0, 64 => 0, 96 => 0, 128 => 0, 160 => 0, 192 => 0, 224 => 0,
       256 => 0, 288 => 0, 320 => 0, 352 => 0, 384 => 0, 416 => 0, 448 => 0),
-    MPEG_ABS::LAYER_TWO   => array (
+    Zend_Media_Mpeg_Abs::LAYER_TWO   => array (
       32 => 0, 48 => 0, 56 => 0, 64 => 0, 80 => 0, 96 => 0, 112 => 0, 128 => 0,
       160 => 0, 192 => 0, 224 => 0, 256 => 0, 320 => 0, 384 => 0),
-    MPEG_ABS::LAYER_THREE => array (
+    Zend_Media_Mpeg_Abs::LAYER_THREE => array (
       32 => 0, 40 => 0, 48 => 0, 56 => 0, 64 => 0, 80 => 0, 96 => 0, 112 => 0,
       128 => 0, 160 => 0, 192 => 0, 224 => 0, 256 => 0, 320 => 0)
   ),
-  MPEG_ABS::SAMPLING_FREQUENCY_LOW  => array (
-    MPEG_ABS::LAYER_ONE   => array (
+  Zend_Media_Mpeg_Abs::SAMPLING_FREQUENCY_LOW  => array (
+    Zend_Media_Mpeg_Abs::LAYER_ONE   => array (
       32 => 0, 48 => 0, 56 => 0, 64 => 0, 80 => 0, 96 => 0, 112 => 0, 128 => 0,
       144 => 0, 160 => 0, 176 => 0, 192 => 0, 224 => 0, 256 => 0),
-    MPEG_ABS::LAYER_TWO   => array (
+    Zend_Media_Mpeg_Abs::LAYER_TWO   => array (
       8 => 0, 16 => 0, 24 => 0, 32 => 0, 40 => 0, 48 => 0, 56 => 0, 64 => 0,
       80 => 0, 96 => 0, 112 => 0, 128 => 0, 144 => 0, 160 => 0),
-    MPEG_ABS::LAYER_THREE => array (
+    Zend_Media_Mpeg_Abs::LAYER_THREE => array (
       8 => 0, 16 => 0, 24 => 0, 32 => 0, 40 => 0, 48 => 0, 56 => 0, 64 => 0,
       80 => 0, 96 => 0, 112 => 0, 128 => 0, 144 => 0, 160 => 0)
   )

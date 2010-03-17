@@ -1,7 +1,7 @@
 #summary The Programmer's Reference Guide: Zend_Media_Id3v1 Class
 #labels Phase-Implementation
 
-=PHP-Reader Documentation: !Zend_Media_Id3v1 Class=
+=PHP Reader Documentation: !Zend_Media_Id3v1 Class=
 By [http://code.google.com/u/wphilipw/ wphilipw], [http://code.google.com/u/svollbehr/ svollbehr]
 
 ==Introduction==

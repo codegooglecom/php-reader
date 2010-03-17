@@ -1,11 +1,11 @@
-#summary The Programmer's Reference Guide: MPEG_PS Class
+#summary The Programmer's Reference Guide: Zend_Media_Mpeg_Ps Class
 #labels Phase-Implementation
 
-=PHP-Reader Documentation: MPEG_PS Class=
+=PHP Reader Documentation: !Zend_Media_Mpeg_Ps Class=
 By [http://code.google.com/u/svollbehr/ svollbehr]
 
 ==Introduction==
-The `MPEG_PS` class provides partial implementation of the MPEG Program Stream defined in MPEG-1 Systems (ISO/IEC 11172-1) and MPEG-2 Systems (ISO/IEC 13818-1) standards.
+The `Zend_Media_Mpeg_Ps` class provides partial implementation of the MPEG Program Stream defined in MPEG-1 Systems (ISO/IEC 11172-1) and MPEG-2 Systems (ISO/IEC 13818-1) standards.
 
 http://php-reader.googlegroups.com/web/reader.aux.mpeg-explained.png
 
@@ -13,43 +13,28 @@ Program streams are used in MPEG video files, DVD video discs and HD DVD video d
 
 The current implementation supports only parsing of the play duration.
 
-==Table of Contents==
-  * [Help Introduction]
-  * [GeneralPurposeClasses General Purpose Classes]
-  * [ASF] Class
-  * [ID3v1] Class
-  * [ID3v2] Class
-  * [MPEG_ABS] Class
-  * *`MPEG_PS` Class*
-  * [ISO14496] Class
-  * [Magic] Class
-
-  * _[http://code.google.com/p/php-reader/issues/list?q=label:MPEG_PS Issues]_
-
 ==Class Information==
-
 http://php-reader.googlegroups.com/web/reader.classdiagram.mpeg_ps.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
-  * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/MPEG/PS.php
+  * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Mpeg/Ps.php
   * _Requirements:_
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Reader.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Reader/Exception.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Transform.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Twiddling.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/MPEG/Object.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/MPEG/Exception.php
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Io package
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Bit package
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Mpeg/Object.php
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Mpeg/Exception.php
+
+  * _[http://code.google.com/p/php-reader/issues/list?q=label:MPEG Issues]_
 
 ==Examples==
-
 ===Example #1: How to read MPEG-PS play duration===
 At the moment this is the only thing supported by the class implementation. You can determine the play duration of the program stream using the following piece of code.
 
 {{{
 <?php
-require_once("MPEG/PS.php");
+require_once 'Zend/Media/Mpeg/Ps.php'; // or using autoload
 
-$ps = new MPEG_PS("file.(mpg|mpeg|vob|evo|..)");
+$ps = new Zend_Media_Mpeg_Ps("file.(mpg|mpeg|vob|evo|..)");
 
 $length = $ps->getLength();           // or $ps->length
 $output = $ps->getFormattedLength();  // or $ps->formattedLength;
