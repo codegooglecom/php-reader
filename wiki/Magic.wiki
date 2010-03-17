@@ -9,25 +9,6 @@ The `Zend_Mime_Magic` class provides for determining the MIME type or descriptio
 
 Although this method is significantly slower than determining the type by file suffix, it reduces the risk of fail positives during the test. The class determines the type in the same way the Unix file(1), which uses _magic numbers_ and other hints from a file's contents to figure out the type.
 
-==Table of Contents==
-  * [Help Introduction]
-  * !Zend_Bit Package
-    * [Twiddling Zend_Bit_Twiddling] Class
-  * !Zend_Io Package
-    * [Reader Zend_Io_Reader] Class
-    * [Writer Zend_Io_Writer] Class
-  * !Zend_Media Package
-    * [ASF Zend_Media_Asf] Class
-    * [ID3v1 Zend_Media_Id3v1] Class
-    * [ID3v2 Zend_Media_Id3v2] Class
-    * [MPEG_ABS Zend_Media_Mpeg_Abs] Class
-    * [MPEG_PS Zend_Media_Mpeg_Ps] Class
-    * [ISO14496 Zend_Media_Iso14496] Class
-  * !Zend_Mime Package
-    * *`Zend_Mime_Magic` Class*
-
-  * _[http://code.google.com/p/php-reader/issues/list?q=label:Magic Issues]_
-
 ==Class Information==
 
 http://php-reader.googlegroups.com/web/reader.classdiagram.magic.png
@@ -36,6 +17,8 @@ http://php-reader.googlegroups.com/web/reader.classdiagram.magic.png
   * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Mime/Magic.php
   * _Requirements:_
     * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Io package
+
+  * _[http://code.google.com/p/php-reader/issues/list?q=label:Magic Issues]_
 
 ==The Source of the Magic==
 The class needs a _magic_ file to be able to operate. The magic file consists of ASCII characters defining the magic numbers for different file types. Each line has 4 to 5 columns, empty and commented lines (those starting with a hash character) are ignored. Columns are described below.
