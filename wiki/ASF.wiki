@@ -1,90 +1,75 @@
-#summary The Programmer's Reference Guide: ASF Class
+#summary The Programmer's Reference Guide: Zend_Media_Asf Class
 #labels Phase-Implementation
 
-=PHP-Reader Documentation: ASF Class=
+=PHP-Reader Documentation: !Zend_Media_Asf Class=
 By [http://code.google.com/u/wphilipw/ wphilipw], [http://code.google.com/u/svollbehr/ svollbehr]
 
 ==Introduction==
-The `ASF` class provides *a full implementation* of the Advanced Systems Format (ASF) standard as defined by [http://go.microsoft.com/fwlink/?LinkId=31334 The Advanced Systems Format (ASF) Specification].
+The `Zend_Media_Asf` class provides *a full implementation* of the Advanced Systems Format (ASF) standard as defined by [http://go.microsoft.com/fwlink/?LinkId=31334 The Advanced Systems Format (ASF) Specification].
  
 The ASF is a file format that can contain various types of information ranging from audio and video to script commands and developer defined custom streams.
 
 The ASF file consists of code blocks that are called content objects. Each of these objects have a format of their own. They may contain other objects or other specific data. Each supported object has been implemented as their own classes to ease the correct use of the information.
 
-The Advanced Systems Format is a base format for media file formats such as Microsoft Windows Audio (WMA) and Microsoft Windows Video (WMV). The `ASF` class is capable of parsing all the file information.
-
-==Table of Contents==
-  * [Help Introduction]
-  * [GeneralPurposeClasses General Purpose Classes]
-  * *`ASF` Class*
-  * [ID3v1] Class
-  * [ID3v2] Class
-  * [MPEG_ABS] Class
-  * [MPEG_PS] Class
-  * [ISO14496] Class
-  * [Magic] Class
-
-  * _[http://code.google.com/p/php-reader/issues/list?q=label:ASF Issues]_
+The Advanced Systems Format is a base format for media file formats such as Microsoft Windows Audio (WMA) and Microsoft Windows Video (WMV). The `Zend_Media_Asf` class is capable of parsing all the file information.
 
 ==Class Information==
-
 http://php-reader.googlegroups.com/web/reader.classdiagram.asf.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
-  * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/ASF.php
+  * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Asf.php
   * _Requirements:_
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Reader.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Reader/Exception.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Transform.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/ASF/Object.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/ASF/Exception.php
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Io package
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Asf/Object.php
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Asf/Exception.php
   * _Optional:_
-    * Any class file under <[http://code.google.com/p/php-reader/downloads/list package]>/src/ASF/Object/ folder
+    * Any class file under <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Asf/Object/ folder
+
+  * _[http://code.google.com/p/php-reader/issues/list?q=label:ASF Issues]_
+
 
 ==ASF Objects==
-
 The following table describes standard objects that have been defined for all ASF objects. Implementations may supplement this list with additional objects when necessary to identify entities, elements, or ideas that have not yet been enumerated by this table.
 
 The table shows top-level objects in the left-most column; indentation is used to show possible containment.
 
-|| *ASF_Object_Header* || || ||
-|| || *ASF_Object_FileProperties* || ||
-|| || *ASF_Object_StreamProperties* (one per stream) || ||
-|| || *ASF_Object_HeaderExtension* || ||
-|| || || ASF_Object_ExtendedStreamProperties ||
-|| || || ASF_Object_AdvancedMutualExclusion ||
-|| || || ASF_Object_GroupMutualExclusion ||
-|| || || ASF_Object_StreamPrioritization ||
-|| || || ASF_Object_BandwidthSharing ||
-|| || || ASF_Object_LanguageList ||
-|| || || ASF_Object_Metadata ||
-|| || || ASF_Object_MetadataLibrary ||
-|| || || ASF_Object_IndexParameters ||
-|| || || ASF_Object_MediaObjectIndexParameters ||
-|| || || ASF_Object_TimecodeIndexParameters ||
-|| || || ASF_Object_Compatibility ||
-|| || || ASF_Object_AdvancedContentEncryption ||
-|| || ASF_Object_CodecList || ||
-|| || ASF_Object_ScriptCommand || ||
-|| || ASF_Object_Marker || ||
-|| || ASF_Object_BitrateMutualExclusion || ||
-|| || ASF_Object_ErrorCorrection || ||
-|| || ASF_Object_ContentDescription || ||
-|| || ASF_Object_ExtendedContentDescription || ||
-|| || ASF_Object_ContentBranding || ||
-|| || ASF_Object_StreamBitrateProperties || ||
-|| || ASF_Object_ContentEncryption || ||
-|| || ASF_Object_ExtendedContentEncryption || ||
-|| || ASF_Object_DigitalSignature || ||
-|| || ASF_Object_Padding || ||
-|| *ASF_Object_Data* || || ||
-|| ASF_Object_SimpleIndex || || ||
-|| ASF_Object_Index || || ||
-|| ASF_Object_MediaObjectIndex || || ||
-|| ASF_Object_TimecodeIndex || || ||
+|| *Zend_Media_Asf_Object_Header* || || ||
+|| || *Zend_Media_Asf_Object_FileProperties* || ||
+|| || *Zend_Media_Asf_Object_StreamProperties* (one per stream) || ||
+|| || *Zend_Media_Asf_Object_HeaderExtension* || ||
+|| || || Zend_Media_Asf_Object_ExtendedStreamProperties ||
+|| || || Zend_Media_Asf_Object_AdvancedMutualExclusion ||
+|| || || Zend_Media_Asf_Object_GroupMutualExclusion ||
+|| || || Zend_Media_Asf_Object_StreamPrioritization ||
+|| || || Zend_Media_Asf_Object_BandwidthSharing ||
+|| || || Zend_Media_Asf_Object_LanguageList ||
+|| || || Zend_Media_Asf_Object_Metadata ||
+|| || || Zend_Media_Asf_Object_MetadataLibrary ||
+|| || || Zend_Media_Asf_Object_IndexParameters ||
+|| || || Zend_Media_Asf_Object_MediaObjectIndexParameters ||
+|| || || Zend_Media_Asf_Object_TimecodeIndexParameters ||
+|| || || Zend_Media_Asf_Object_Compatibility ||
+|| || || Zend_Media_Asf_Object_AdvancedContentEncryption ||
+|| || Zend_Media_Asf_Object_CodecList || ||
+|| || Zend_Media_Asf_Object_ScriptCommand || ||
+|| || Zend_Media_Asf_Object_Marker || ||
+|| || Zend_Media_Asf_Object_BitrateMutualExclusion || ||
+|| || Zend_Media_Asf_Object_ErrorCorrection || ||
+|| || Zend_Media_Asf_Object_ContentDescription || ||
+|| || Zend_Media_Asf_Object_ExtendedContentDescription || ||
+|| || Zend_Media_Asf_Object_ContentBranding || ||
+|| || Zend_Media_Asf_Object_StreamBitrateProperties || ||
+|| || Zend_Media_Asf_Object_ContentEncryption || ||
+|| || Zend_Media_Asf_Object_ExtendedContentEncryption || ||
+|| || Zend_Media_Asf_Object_DigitalSignature || ||
+|| || Zend_Media_Asf_Object_Padding || ||
+|| *Zend_Media_Asf_Object_Data* || || ||
+|| Zend_Media_Asf_Object_SimpleIndex || || ||
+|| Zend_Media_Asf_Object_Index || || ||
+|| Zend_Media_Asf_Object_MediaObjectIndex || || ||
+|| Zend_Media_Asf_Object_TimecodeIndex || || ||
 
 ==Examples==
-
 ===Example #1: How to read ASF information===
 There are basically two types of objects. There are the objects that do not contain other objects, and there are objects that do contain other objects. The former is referred to as an object whereas the latter is referred to as a container.
 
@@ -92,9 +77,9 @@ ASF files are easy to structure with an object oriented language by their design
 
 {{{
 <?php
-require_once("ASF.php");
+require_once 'Zend/Media/Asf.php'; // or using autoload
 
-$asf = new ASF("file.(asf|wma|wmv|..)");
+$asf = new Zend_Media_Asf("file.(asf|wma|wmv|..)");
 
 echo get_class($asf) . "\n";
 foreach ($asf->getObjects() as $objects)
@@ -106,12 +91,12 @@ The above example prints all the top-level objects found in the file. The file c
 
 {{{
 <?php
-require_once("ASF.php");
+require_once 'Zend/Media/Asf.php'; // or using autoload
 
 /**
  * Prints ASF object information recursively.
  *
- * @param ASF_Object $object The object where to start.
+ * @param Zend_Media_Asf_Object $object The object where to start.
  * @param integer $depth The recursion level the start object is in.
  * @return void
  */
@@ -121,13 +106,13 @@ function printRecurse($obj, $depth = 0) {
       echo str_repeat(" ", $depth * 4) . "Object " . get_class($object) . " (" . $object->identifier . ") @ " .
         $object->offset . " of size: " . $object->size . ", ends @ " .
         ($object->offset + $object->size) . "\n";
-      if ($object instanceof ASF_Object_Container)
+      if ($object instanceof Zend_Media_Asf_Object_Container)
         printRecurse($object, $depth + 1);
     }
   }
 }
 
-$asf = new ASF("file.(asf|wma|wmv|..)");
+$asf = new Zend_Media_Asf("file.(asf|wma|wmv|..)");
 
 printRecurse($asf);
 }}}
@@ -136,9 +121,9 @@ The following example shows how to get the file properties from the !FilePropert
 
 {{{
 <?php
-require_once("ASF.php");
+require_once 'Zend/Media/Asf.php'; // or using autoload
 
-$asf = new ASF("file.(asf|wma|wmv|..)");
+$asf = new Zend_Media_Asf("file.(asf|wma|wmv|..)");
 
 $playDuration = $asf->header->fileProperties->playDuration;
 $preroll      = $asf->header->fileProperties->preroll;
@@ -154,11 +139,11 @@ To fully understand what is going on here you must be familiar with the magic fu
 
 {{{
 <?php
-require_once("ASF.php");
+require_once 'Zend/Media/Asf.php'; // or using autoload
 
 $asf = new ASF("file.(asf|wma|wmv|..)");
 
-$fileProperties = $asf->getObjectsByIdentifier(ASF::FILE_PROPERTIES);
+$fileProperties = $asf->getHeader()->getObjectsByIdentifier(Zend_Media_Asf::FILE_PROPERTIES);
 $playDuration = $fileProperties[0]->getPlayDuration();
 
 // ...
@@ -172,11 +157,11 @@ The ASF standard defines several optional objects so it is generally a good idea
 
 {{{
 <?php
-require_once("ASF.php");
+require_once 'Zend/Media/Asf.php'; // or using autoload
 
-$asf = new ASF("file.(asf|wma|wmv|..)");
+$asf = new Zend_Media_Asf("file.(asf|wma|wmv|..)");
 
-if ($asf->hasObject(ASF::SIMPLE_INDEX))
+if ($asf->hasObject(Zend_Media_Asf::SIMPLE_INDEX))
   $simpleIndex = $asf->simpleIndex;
 
 // or ..
@@ -189,9 +174,9 @@ While you do not need to check the existence of the file properties object (as i
 
 {{{
 <?php
-require_once("ASF.php");
+require_once 'Zend/Media/Asf.php'; // or using autoload
 
-$asf = new ASF("file.(asf|wma|wmv|..)");
+$asf = new Zend_Media_Asf("file.(asf|wma|wmv|..)");
 
 if (isset($asf->header->contentDescription)) {
   echo "A song by " . $asf->header->contentDescription->author .
@@ -214,13 +199,13 @@ To write to an ASF file, one may simply create an instance of the class, assign 
 
 {{{
 <?php
-require_once("ASF.php");
+require_once 'Zend/Media/Asf.php'; // or using autoload
 
-$asf = new ASF("file.(asf|wma|wmv|..)");
+$asf = new Zend_Media_Asf("file.(asf|wma|wmv|..)");
 
 $asf->header->contentDescription->title = $asf->header->contentDescription->title . " by me!"; // append something to the title
 
-$asf->write();
+$asf->write(null);
 }}}
 
 When setting values, it is worthwhile to note that any object that does not already exist, is created and added to the file automatically when first accessed. This allows one to quickly assign values to fields that were not in the file when it is first read into memory. When you first access an object that does not exist, the object gets implicitly created and added to the collection.
@@ -229,19 +214,21 @@ Using shorthands is much quicker way to perform simple tasks on the objects. Con
 
 {{{
 <?php
-require_once("ASF.php");
+require_once 'Zend/Media/Asf.php'; // or using autoload
 
-$asf = new ASF("file.(asf|wma|wmv|..)");
+$asf = new Zend_Media_Asf("file.(asf|wma|wmv|..)");
 
-if (!$asf->getHeader()->hasObject(ASF::CONTENT_DESCRIPTION))
-  $asf->getHeader()->addObject($object = new ASF_Object_ContentDescription());
-else
-  $object = $asf->getHeader()->getObjectsByIdentifier(ASF::CONTENT_DESCRIPTION)[0];
-$object->setTitle($object->getTitle() . " by me!"; // append something to the title
+if (!$asf->getHeader()->hasObject(Zend_Media_Asf::CONTENT_DESCRIPTION))
+  $asf->getHeader()->addObject($object = new Zend_Media_Asf_Object_ContentDescription());
+else {
+  $objects = $asf->getHeader()->getObjectsByIdentifier(Zend_Media_Asf::CONTENT_DESCRIPTION);
+  $object = $objects[0];
+}
+$object->setTitle($object->getTitle() . " by me!"); // append something to the title
 
-$asf->write();
+$asf->write(null);
 }}}
 
-Content objects can be accessed within their parent object (or the ASF root class) instances. The object name must be given in camel case having the first letter in lower case.
+Content objects can be accessed within their parent object (or the Zend_Media_Asf root class) instances. The object name must be given in camel case having the first letter in lower case.
 
 See the class documentation found in the source package for the documentation for all the available objects and their methods. Also, leave a comment if you come up with an idea for an example that would be nice to have added here!

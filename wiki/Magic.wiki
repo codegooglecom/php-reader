@@ -10,7 +10,6 @@ The `Zend_Mime_Magic` class provides for determining the MIME type or descriptio
 Although this method is significantly slower than determining the type by file suffix, it reduces the risk of fail positives during the test. The class determines the type in the same way the Unix file(1), which uses _magic numbers_ and other hints from a file's contents to figure out the type.
 
 ==Class Information==
-
 http://php-reader.googlegroups.com/web/reader.classdiagram.magic.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
