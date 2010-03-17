@@ -1,27 +1,13 @@
-#summary The Programmer's Reference Guide: ID3v1 Class
+#summary The Programmer's Reference Guide: Zend_Media_Id3v1 Class
 #labels Phase-Implementation
 
-=PHP-Reader Documentation: ID3v1 Class=
+=PHP-Reader Documentation: !Zend_Media_Id3v1 Class=
 By [http://code.google.com/u/wphilipw/ wphilipw], [http://code.google.com/u/svollbehr/ svollbehr]
 
 ==Introduction==
-`ID3v1` class provides a fully standards compliant implementation of the ID3v1.0 and ID3v1.1 standards. The ID3 tag can be used with various files including MPEG Layer III, or MP3. The class is capable of both reading and writing tag information.
-
-==Table of Contents==
-  * [Help Introduction]
-  * [GeneralPurposeClasses General Purpose Classes]
-  * [ASF] Class
-  * *`ID3v1` Class*
-  * [ID3v2] Class
-  * [MPEG_ABS] Class
-  * [MPEG_PS] Class
-  * [ISO14496] Class
-  * [Magic] Class
-
-  * _[http://code.google.com/p/php-reader/issues/list?q=label:ID3v1 Issues]_
+`Zend_Media_Id3v1` class provides a fully standards compliant implementation of the ID3v1.0 and ID3v1.1 standards. The ID3 tag can be used with various files including MPEG Layer III, or MP3. The class is capable of both reading and writing tag information.
 
 ==Class Information==
-
 http://php-reader.googlegroups.com/web/reader.classdiagram.id3v1.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
@@ -32,23 +18,24 @@ http://php-reader.googlegroups.com/web/reader.classdiagram.id3v1.png
     * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Transform.php
     * <[http://code.google.com/p/php-reader/downloads/list package]>/src/ID3/Exception.php
 
-==Examples==
+  * _[http://code.google.com/p/php-reader/issues/list?q=label:ID3v1 Issues]_
 
+==Examples==
 ===Example #1: How to read ID3v1 information===
-`ID3v1` class functions _just work_ and the only way to show that is to see them in action:
+`Zend_Media_Id3v1` class functions _just work_ and the only way to show that is to see them in action:
 
 {{{
 <?php
-require_once("ID3v1.php");
+require_once("Zend/Media/Id3v1.php");
 
-$id3 = new ID3v1("file.mp3");
+$id3 = new Zend_Media_Id3v1("file.mp3");
 $val = $id3->getTitle(); // or getArtist, getAlbum, getYear, ...
 }}}
 
 The class also supports shorthands for getting and assigning field values. The above code could also be written as shown below.
 
 {{{
-$id3 = new ID3v1("file.mp3");
+$id3 = new Zend_Media_Id3v1("file.mp3");
 $val = $id3->title;      // or artist, album, year, ...
 }}}
 
@@ -59,9 +46,9 @@ Writing new ID3v1 tags is as an easy task as reading them. One simply creates an
 
 {{{
 <?php
-require_once("ID3v1.php");
+require_once("Zend/Media/Id3v1.php");
 
-$id3 = new ID3v1();
+$id3 = new Zend_Media_Id3v1();
 $id3->setTitle("My song title");
 $id3->write("file.mp3");
 }}}
@@ -70,9 +57,9 @@ It is also possible to read current tag content, alter it and then rewrite it ba
 
 {{{
 <?php
-require_once("ID3v1.php");
+require_once("Zend/Media/Id3v1.php");
 
-$id3 = new ID3v1("file.mp3");
+$id3 = new Zend_Media_Id3v1("file.mp3");
 $id3->setTitle("{$id3->getTitle()} by me!"); // append something to the title
 $id3->setAlbum("My album");
 $id3->write();
@@ -82,9 +69,9 @@ Similarly to when you read the tag information, you can also use the class short
 
 {{{
 <?php
-require_once("ID3v1.php");
+require_once("Zend/Media/Id3v1.php");
 
-$id3 = new ID3v1("file.mp3");
+$id3 = new Zend_Media_Id3v1("file.mp3");
 $id3->title = "{$id3->getTitle()} by me!"; // append something to the title
 $id3->album = "My album";
 $id3->genre = "Rock";                      // or $id3->genre = 17;
@@ -94,6 +81,6 @@ $id3->track = 5;                           // uses ID3v1.1 when track is given
 $id3->write();
 }}}
 
-The `ID3v1` class will automatically determine which version of the tag format to use based on whether you set a track or not.
+The `Zend_Media_Id3v1` class will automatically determine which version of the tag format to use based on whether you set a track or not.
  
 See the class documentation found in the source package for the documentation for all the available tag fields. Also, leave a comment if you come up with an idea for an example that would be nice to have added here!
