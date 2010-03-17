@@ -1,24 +1,30 @@
 #summary The Programmer's Reference Guide: Magic Class
 #labels Phase-Implementation
 
-=PHP-Reader Documentation: Magic Class=
+=PHP-Reader Documentation: Zend_Mime_Magic Class=
 By [http://code.google.com/u/svollbehr/ svollbehr]
 
 ==Introduction==
-The `Magic` class provides for determining the MIME type or description of a file by looking at a few bytes, or magic numbers, of its contents.
+The `Zend_Mime_Magic` class provides for determining the MIME type or description of a file by looking at a few bytes, or magic numbers, of its contents.
 
 Although this method is significantly slower than determining the type by file suffix, it reduces the risk of fail positives during the test. The class determines the type in the same way the Unix file(1), which uses _magic numbers_ and other hints from a file's contents to figure out the type.
 
 ==Table of Contents==
   * [Help Introduction]
-  * [GeneralPurposeClasses General Purpose Classes]
-  * [ASF] Class
-  * [ID3v1] Class
-  * [ID3v2] Class
-  * [MPEG_ABS] Class
-  * [MPEG_PS] Class
-  * [ISO14496] Class
-  * *`Magic` Class*
+  * Zend_Bit Package
+    * [Twiddling Zend_Bit_Twiddling] Class
+  * Zend_Io Package
+    * [Reader Zend_Io_Reader] Class
+    * [Writer Zend_Io_Writer] Class
+  * Zend_Media Package
+    * [ASF Zend_Media_Asf] Class
+    * [ID3v1 Zend_Media_Id3v1] Class
+    * [ID3v2 Zend_Media_Id3v2] Class
+    * [MPEG_ABS Zend_Media_Mpeg_Abs] Class
+    * [MPEG_PS Zend_Media_Mpeg_Ps] Class
+    * [ISO14496 Zend_Media_Iso14496] Class
+  * Zend_Mime Package
+    * *`Zend_Mime_Magic` Class*
 
   * _[http://code.google.com/p/php-reader/issues/list?q=label:Magic Issues]_
 
@@ -27,10 +33,9 @@ Although this method is significantly slower than determining the type by file s
 http://php-reader.googlegroups.com/web/reader.classdiagram.magic.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
-  * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/Magic.php
+  * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Mime/Magic.php
   * _Requirements:_
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Reader.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Reader/Exception.php
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Io package
 
 ==The Source of the Magic==
 The class needs a _magic_ file to be able to operate. The magic file consists of ASCII characters defining the magic numbers for different file types. Each line has 4 to 5 columns, empty and commented lines (those starting with a hash character) are ignored. Columns are described below.
@@ -113,11 +118,25 @@ Getting the file type is as simple as calling a method as shown below.
 
 {{{
 <?php
-require_once("Magic.php");
+require_once 'Zend/Mime/Magic.php'; // or using autoload
 
-$magic = new Magic("magic");
+$magic = new Zend_Mime_Magic('magic');
 
-$type = $magic->getType("file.ext");
+$type = $magic->getMimeType('file.ext');
+}}}
+
+You may also provide with a default type if file is not recognized.
+
+{{{
+$type = $magic->getMimeType('file.ext', 'application/octet-stream');
+}}}
+
+Also a convenience method to test for a specific mime type is provided. This can be used for example to check the type of an uploaded file.
+
+{{{
+if ($magic->isMimeType('file.ext', 'application/pdf')) {
+  // ...
+}
 }}}
 
 See the class documentation found in the source package for the complete documentation. Also, leave a comment if you come up with an idea for an example that would be nice to have added here!
