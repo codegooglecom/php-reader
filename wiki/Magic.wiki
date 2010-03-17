@@ -1,7 +1,7 @@
 #summary The Programmer's Reference Guide: Magic Class
 #labels Phase-Implementation
 
-=PHP-Reader Documentation: Zend_Mime_Magic Class=
+=PHP-Reader Documentation: !Zend_Mime_Magic Class=
 By [http://code.google.com/u/svollbehr/ svollbehr]
 
 ==Introduction==
@@ -11,19 +11,19 @@ Although this method is significantly slower than determining the type by file s
 
 ==Table of Contents==
   * [Help Introduction]
-  * Zend_Bit Package
+  * !Zend_Bit Package
     * [Twiddling Zend_Bit_Twiddling] Class
-  * Zend_Io Package
+  * !Zend_Io Package
     * [Reader Zend_Io_Reader] Class
     * [Writer Zend_Io_Writer] Class
-  * Zend_Media Package
+  * !Zend_Media Package
     * [ASF Zend_Media_Asf] Class
     * [ID3v1 Zend_Media_Id3v1] Class
     * [ID3v2 Zend_Media_Id3v2] Class
     * [MPEG_ABS Zend_Media_Mpeg_Abs] Class
     * [MPEG_PS Zend_Media_Mpeg_Ps] Class
     * [ISO14496 Zend_Media_Iso14496] Class
-  * Zend_Mime Package
+  * !Zend_Mime Package
     * *`Zend_Mime_Magic` Class*
 
   * _[http://code.google.com/p/php-reader/issues/list?q=label:Magic Issues]_
