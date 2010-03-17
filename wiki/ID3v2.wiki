@@ -1,53 +1,38 @@
-#summary The Programmer's Reference Guide: ID3v2 Class
+#summary The Programmer's Reference Guide: Zend_Media_Id3v2 Class
 #labels Phase-Implementation
 
-=PHP-Reader Documentation: ID3v2 Class=
+=PHP-Reader Documentation: !Zend_Media_Id3v2 Class=
 By [http://code.google.com/u/wphilipw/ wphilipw], [http://code.google.com/u/svollbehr/ svollbehr], [http://code.google.com/u/buttza/ buttza]
 
 ==Introduction==
-The `ID3v2` class provides *a full implementation* of the ID3v2.3.0 and ID3v2.4.0 standards as defined by [http://www.id3.org/ ID3.org]. The ID3 tag can be used with various files including MPEG Layer III, or MP3 files. The class is capable of both reading and writing tag information.
-
-==Table of Contents==
-  * [Help Introduction]
-  * [GeneralPurposeClasses General Purpose Classes]
-  * [ASF] Class
-  * [ID3v1] Class
-  * *`ID3v2` Class*
-  * [MPEG_ABS] Class
-  * [MPEG_PS] Class
-  * [ISO14496] Class
-  * [Magic] Class
-
-  * _[http://code.google.com/p/php-reader/issues/list?q=label:ID3v2 Issues]_
+The `Zend_Media_Id3v2` class provides *a full implementation* of the ID3v2.3.0 and ID3v2.4.0 standards as defined by [http://www.id3.org/ ID3.org]. The ID3 tag can be used with various files including MPEG Layer III, or MP3 files. The class is capable of both reading and writing tag information.
 
 ==Class Information==
-
 http://php-reader.googlegroups.com/web/reader.classdiagram.id3v2.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
   * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/ID3v2.php
   * _Requirements:_
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Reader.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Reader/Exception.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Transform.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/ID3/Object.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/ID3/Frame.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/ID3/Header.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/ID3/!ExtendedHeader.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/ID3/Exception.php
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Io package
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Id3/Object.php
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Id3/Frame.php
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Id3/Header.php
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Id3/!ExtendedHeader.php
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Id3/Exception.php
   * _Optional:_
-    * Any class file under <[http://code.google.com/p/php-reader/downloads/list package]>/src/ID3/Frame/ folder
+    * Any class file under <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Id3/Frame/ folder
+
+  * _[http://code.google.com/p/php-reader/issues/list?q=label:ID3v2 Issues]_
 
 ==Examples==
-
 ===Example #1: How to read ID3v2 information===
-The simplest way to use the `ID3v2` class is to have it get a specific frame by its identifier.
+The simplest way to use the `Zend_Media_Id3v2` class is to have it get a specific frame by its identifier.
 
 {{{
 <?php
-require_once("ID3v2.php");
+require_once 'Zend/Media/Id3v2.php'; // or using autoload 
 
-$id3 = new ID3v2("file.mp3");
+$id3 = new Zend_Media_Id3v2("file.mp3");
 $frame = $id3->getFramesByIdentifier("TIT2"); // for song title; or TALB for album title; ..
 $title = $frame[0]->getText();
 
@@ -59,9 +44,9 @@ As already so familiar from the [ID3v1] class, the class also supports shorthand
 
 {{{
 <?php
-require_once("ID3v2.php");
+require_once 'Zend/Media/Id3v2.php'; // or using autoload
 
-$id3 = new ID3v2("file.mp3");
+$id3 = new Zend_Media_Id3v2("file.mp3");
 
 $title = $id3->tit2->text;                    // contains the first song title; or talb->text for album title; ...
 $image = $id3->apic->imageType;               // contains the first attached picture type
@@ -73,9 +58,9 @@ This is a feature that allows one to quickly set frame values without explicitly
 
 {{{
 <?php
-require_once("ID3v2.php");
+require_once 'Zend/Media/Id3v2.php'; // or using autoload
 
-$id3 = new ID3v2("file.mp3");
+$id3 = new Zend_Media_Id3v2("file.mp3");
 
 
 if ($id3->hasFrame("TIME"))
@@ -92,10 +77,10 @@ As the most common reason to read ID3 tags is to get the song information, it is
 
 {{{
 <?php
-require_once("ID3v2.php");
+require_once 'Zend/Media/Id3v2.php'; // or using autoload
 
-$id3 = new ID3v2("file.mp3");
-$id3info = array()
+$id3 = new Zend_Media_Id3v2("file.mp3");
+$id3info = array();
 foreach ($id3->getFramesByIdentifier("T*") as $frame)
   $id3info[$frame->identifier] = $frame->text;
 
@@ -106,17 +91,19 @@ However, more often than not, there is not just one single piece of information 
 
 {{{
 <?php
-require_once("ID3v2.php");
+require_once 'Zend/Media/Id3v2.php'; // or using autoload
+require_once 'Zend/Media/Id3/TextFrame.php';
+require_once 'Zend/Media/Id3/LinkFrame.php';
+require_once 'Zend/Media/Id3/Frame/Apic.php';
 
-$id3 = new ID3v2("file.mp3");
 foreach ($id3->frames as $frames) {
   foreach ($frames as $frame) {
     echo $frame->identifier;
-    if ($frame instanceof ID3_Frame_AbstractText)
+    if ($frame instanceof Zend_Media_Id3_TextFrame)
       echo ": " . $frame->text;
-    if ($frame instanceof ID3_Frame_AbstractLink)
+    if ($frame instanceof Zend_Media_Id3_LinkFrame)
       echo ": " . $frame->link;
-    if ($frame instanceof ID3_Frame_APIC)
+    if ($frame instanceof Zend_Media_Id3_Frame_Apic)
       echo ": " . $frame->imageType;
 
     // etc..
@@ -131,11 +118,12 @@ Writing an ID3v2 tag is no harder than writing an [ID3v1] tag. One may simply cr
 
 {{{
 <?php
-require_once("ID3v2.php");
+require_once 'Zend/Media/Id3v2.php'; // or using autoload
+require_once 'Zend/Media/Id3/Frame/Tit2.php';
 
-$id3 = new ID3v2();
+$id3 = new Zend_Media_Id3v2();
 
-$tit2 = new ID3_Frame_TIT2();
+$tit2 = new Zend_Media_Id3_Frame_Tit2();
 $tit2->setText("My song title");
 $id3->addFrame($tit2);
 
@@ -146,30 +134,31 @@ It is also possible to read current tag content, alter it and then rewrite it ba
 
 {{{
 <?php
-require_once("ID3v2.php");
+require_once 'Zend/Media/Id3v2.php'; // or using autoload
+require_once 'Zend/Media/Id3/Frame/Talb.php';
 
-$id3 = new ID3v2("file.mp3");
+$id3 = new Zend_Media_Id3v2("file.mp3");
 
-$id3->getFramesByIdentifier("TIT2")[0]->setText
-  ($id3->getFramesByIdentifier("TIT2")[0]->getText() . " by me!"); // append something to the title
+$frames = $id3->getFramesByIdentifier("TIT2");
+$frames[0]->setText($frames[0]->getText() . " by me!"); // append something to the title
 
-$talb = new ID3_Frame_TALB();
-$talb = "My album";
+$talb = new Zend_Media_Id3_Frame_Talb();
+$talb->setText("My album");
 $id3->addFrame($talb);
 
-$id3->write();
+$id3->write(null);
 }}}
 
 Similarly to when you read the tag information, you can also use the class shorthands to assign the information. The above code can also be written as follows.
 
 {{{
 <?php
-require_once("ID3v2.php");
+require_once 'Zend/Media/Id3v2.php'; // or using autoload
 
-$id3 = new ID3v2("file.mp3");
+$id3 = new Zend_Media_Id3v2("file.mp3");
 $id3->tit2->text = "{$id3->tit2->text} by me!"; // append something to the title
 $id3->talb->text = "My album";
-$id3->write();
+$id3->write(null);
 }}}
 
 ===Example #4: Case study: How to display album cover image===
@@ -177,9 +166,9 @@ ID3v2 can also contain images you might say. Well, there is a way to read them.
 
 {{{
 <?php
-require_once("ID3v2.php");
+require_once 'Zend/Media/Id3v2.php'; // or using autoload
 
-$id3 = new ID3v2("file.mp3");
+$id3 = new Zend_Media_Id3v2("file.mp3");
 header("Content-Type: " . $id3->apic->mimeType);
 echo $id3->apic->imageData;
 }}}
@@ -187,11 +176,12 @@ echo $id3->apic->imageData;
 No harder than that!
 
 ===Example #5: Case study: How to extract cover images from music files===
-In a slightly harder example we extract the cover images from a directory full of music files. In this example we first scan the whole directory looking for MP3 files. After ensuring the file contains a valid `ID3v2` tag and actually has a cover image, we gather information about the image and write the image data to a separate file, or the same file with an added image suffix.
+In a slightly harder example we extract the cover images from a directory full of music files. In this example we first scan the whole directory looking for MP3 files. After ensuring the file contains a valid ID3v2 tag and actually has a cover image, we gather information about the image and write the image data to a separate file, or the same file with an added image suffix.
 
 {{{
 <?php
-require_once("ID3v2.php");
+require_once 'Zend/Media/Id3v2.php'; // or using autoload
+require_once 'Zend/Media/Id3/Exception.php';
 
 $directory = "../change/path/to/mp3/directory/here";
 
@@ -201,9 +191,9 @@ foreach (glob($directory . "/*.mp3") as $file) {
   
   /* Attempt to parse the file, catching any exceptions */
   try {
-    $id3 = new ID3v2($file);
+    $id3 = new Zend_Media_Id3v2($file);
   }
-  catch (ID3_Exception $e) {
+  catch (Zend_Media_Id3_Exception $e) {
     echo "  " . $e->getMessage() . "\n";
     continue;
   }
@@ -236,7 +226,8 @@ Bulk editing ID3 tags might come in handy in several occations. Say, you forgot 
 
 {{{
 <?php
-require_once("ID3v2.php");
+require_once 'Zend/Media/Id3v2.php'; // or using autoload
+require_once 'Zend/Media/Id3/Exception.php';
 
 $directory = "../change/path/to/mp3/directory/here";
 
@@ -246,7 +237,7 @@ foreach (glob($directory . "/*.mp3") as $file) {
 
   /* Attempt to parse and edit the file, catching any exceptions */
   try {
-    $id3 = new ID3v2($file);
+    $id3 = new Zend_Media_Id3v2($file);
 
     // Edit the following to match your editing needs
     $id3->txxx->text = "Edited by PHP Reader http://php-reader.googlecode.com/";
@@ -259,7 +250,7 @@ foreach (glob($directory . "/*.mp3") as $file) {
     
     echo "  File successfully edited!\n";
   }
-  catch (ID3_Exception $e) {
+  catch (Zend_Media_Id3_Exception $e) {
     echo "  " . $e->getMessage() . "\n";
     continue;
   }
@@ -270,13 +261,15 @@ foreach (glob($directory . "/*.mp3") as $file) {
 One can run the script from a command prompt or terminal.
 
 ===Example #7: Version juggling===
-By default, the `ID3v2` class recognizes the version of the standard used to write the tag. For convenience, the class also converts all texts by default to UTF-8. When you write a new tag, the class defaults to the newest version 4.0. You can change this behaviour by giving an options array to the constructor as shown below.
+By default, the `Zend_Media_Id3v2` class recognizes the version of the standard used to write the tag. For convenience, the class also converts all texts by default to UTF-8. When you write a new tag, the class defaults to the newest version 4.0. You can change this behaviour by giving an options array to the constructor as shown below.
+
+<font color="red">*WARNING*. Neither Microsoft Windows 7 nor Microsoft Windows Media Player 9 can read ID3v2.4 tags. If you plan on keeping compatibility with these you need to use ID3v2.3 tags!</font>
 
 {{{
 <?php
-require_once("ID3v2.php");
+require_once 'Zend/Media/Id3v2.php'; // or using autoload
 
-$id3 = new ID3v2(array("version" => 3.0, "encoding" => ID3_Encoding::ISO88591));
+$id3 = new Zend_Media_Id3v2(array("version" => 3.0, "encoding" => ID3_Encoding::ISO88591));
 $id3->tyer->text = "2000";
 $id3->write();                         // write ID3v2.3.0 compliant tag in ISO-8859-1
                                        // encoding instead of the default UTF-8 which is
@@ -287,9 +280,9 @@ It is also possible to change the version information on a read tag. However, yo
 
 {{{
 <?php
-require_once("ID3v2.php");
+require_once 'Zend/Media/Id3v2.php'; // or using autoload
 
-$id3 = new ID3v2("file.mp3", array("encoding", ID3_Encoding::ISO88591);
+$id3 = new Zend_Media_Id3v2("file.mp3", array("encoding", ID3_Encoding::ISO88591);
                                        // read any version of the tag in ISO-8859-1
                                        // encoding instead of the default UTF-8 which is
                                        // not supported in ID3v2.3.0

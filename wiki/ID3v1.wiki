@@ -11,12 +11,10 @@ By [http://code.google.com/u/wphilipw/ wphilipw], [http://code.google.com/u/svol
 http://php-reader.googlegroups.com/web/reader.classdiagram.id3v1.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
-  * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/ID3v1.php
+  * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Id3v1.php
   * _Requirements:_
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Reader.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Reader/Exception.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Transform.php
-    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/ID3/Exception.php
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Io package
+    * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Id3/Exception.php
 
   * _[http://code.google.com/p/php-reader/issues/list?q=label:ID3v1 Issues]_
 
@@ -26,7 +24,7 @@ http://php-reader.googlegroups.com/web/reader.classdiagram.id3v1.png
 
 {{{
 <?php
-require_once("Zend/Media/Id3v1.php");
+require_once 'Zend/Media/Id3v1.php'; // or using autoload 
 
 $id3 = new Zend_Media_Id3v1("file.mp3");
 $val = $id3->getTitle(); // or getArtist, getAlbum, getYear, ...
@@ -46,7 +44,7 @@ Writing new ID3v1 tags is as an easy task as reading them. One simply creates an
 
 {{{
 <?php
-require_once("Zend/Media/Id3v1.php");
+require_once 'Zend/Media/Id3v1.php'; // or using autoload
 
 $id3 = new Zend_Media_Id3v1();
 $id3->setTitle("My song title");
@@ -57,7 +55,7 @@ It is also possible to read current tag content, alter it and then rewrite it ba
 
 {{{
 <?php
-require_once("Zend/Media/Id3v1.php");
+require_once 'Zend/Media/Id3v1.php'; // or using autoload
 
 $id3 = new Zend_Media_Id3v1("file.mp3");
 $id3->setTitle("{$id3->getTitle()} by me!"); // append something to the title
@@ -69,7 +67,7 @@ Similarly to when you read the tag information, you can also use the class short
 
 {{{
 <?php
-require_once("Zend/Media/Id3v1.php");
+require_once 'Zend/Media/Id3v1.php'; // or using autoload
 
 $id3 = new Zend_Media_Id3v1("file.mp3");
 $id3->title = "{$id3->getTitle()} by me!"; // append something to the title

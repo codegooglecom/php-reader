@@ -215,6 +215,7 @@ Using shorthands is much quicker way to perform simple tasks on the objects. Con
 {{{
 <?php
 require_once 'Zend/Media/Asf.php'; // or using autoload
+require_once 'Zend/Media/Asf/Object/ContentDescription.php';
 
 $asf = new Zend_Media_Asf("file.(asf|wma|wmv|..)");
 
