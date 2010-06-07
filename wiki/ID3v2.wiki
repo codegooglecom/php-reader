@@ -269,7 +269,7 @@ By default, the `Zend_Media_Id3v2` class recognizes the version of the standard 
 <?php
 require_once 'Zend/Media/Id3v2.php'; // or using autoload
 
-$id3 = new Zend_Media_Id3v2(array("version" => 3.0, "encoding" => ID3_Encoding::ISO88591));
+$id3 = new Zend_Media_Id3v2(array("version" => 3.0, "encoding" => Zend_Media_Id3_Encoding::ISO88591));
 $id3->tyer->text = "2000";
 $id3->write();                         // write ID3v2.3.0 compliant tag in ISO-8859-1
                                        // encoding instead of the default UTF-8 which is
@@ -282,7 +282,7 @@ It is also possible to change the version information on a read tag. However, yo
 <?php
 require_once 'Zend/Media/Id3v2.php'; // or using autoload
 
-$id3 = new Zend_Media_Id3v2("file.mp3", array("encoding", ID3_Encoding::ISO88591);
+$id3 = new Zend_Media_Id3v2("file.mp3", array("encoding", Zend_Media_Id3_Encoding::ISO88591);
                                        // read any version of the tag in ISO-8859-1
                                        // encoding instead of the default UTF-8 which is
                                        // not supported in ID3v2.3.0
