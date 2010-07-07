@@ -72,7 +72,7 @@ if (isset($id3->time))
   echo "The value of TIME is " . $id3->time->text . "\n";
 }}}
 
-Before getting too far in reading ID3v2 tags, we need to ensure the files we read contain the necessary data. As we know, the music files may not always contain a tag at all. As an object oriented library all classes throw exceptions should an error of such nature occur. An exception may also be thrown if you open up files that are not readable. Regardless of the cause, you need to take exceptions into account by using a try-catch statement in your code. Here is how to correctly initialize the Zend_Media_ID3v2 class with error handling. You may also use the same technique to determine whether the class contains an ID3v1 tag.
+Before getting too far in reading ID3v2 tags, we need to ensure the files we read contain the necessary data. As we know, the music files may not always contain a tag at all. As an object oriented library all classes throw exceptions should an error of such nature occur. An exception may also be thrown if you open up files that are not readable. Regardless of the cause, you need to take exceptions into account by using a try-catch statement in your code. Here is how to correctly initialize the !Zend_Media_ID3v2 class with error handling. You may also use the same technique to determine whether the class contains an [ID3v1] tag.
 
 {{{
 try {
