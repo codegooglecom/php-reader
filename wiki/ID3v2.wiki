@@ -72,6 +72,20 @@ if (isset($id3->time))
   echo "The value of TIME is " . $id3->time->text . "\n";
 }}}
 
+Before getting too far in reading ID3v2 tags, we need to ensure the files we read contain the necessary data. As we know, the music files may not always contain a tag at all. As an object oriented library all classes throw exceptions should an error of such nature occur. An exception may also be thrown if you open up files that are not readable. Regardless of the cause, you need to take exceptions into account by using a try-catch statement in your code. Here is how to correctly initialize the Zend_Media_ID3v2 class with error handling. You may also use the same technique to determine whether the class contains an ID3v1 tag.
+
+{{{
+try {
+    $id3 = new Zend_Media_Id3v2($filename);
+
+    // File contains ID3v2 tag
+
+} catch (Zend_Media_Id3_Exception $e) {
+    die ($e->getMessage());
+}
+}}}
+
+
 ===Example #2: Other ways to read ID3v2 information===
 As the most common reason to read ID3 tags is to get the song information, it is often sufficient to get out just the textual information of an ID3v2 tag. This can easily be done with just a few lines of code by using tag selector as shown below.
 
@@ -261,15 +275,18 @@ foreach (glob($directory . "/*.mp3") as $file) {
 One can run the script from a command prompt or terminal.
 
 ===Example #7: Version juggling===
-By default, the `Zend_Media_Id3v2` class recognizes the version of the standard used to write the tag. For convenience, the class also converts all texts by default to UTF-8. When you write a new tag, the class defaults to the newest version 4.0. You can change this behaviour by giving an options array to the constructor as shown below.
+By default, the `Zend_Media_Id3v2` class recognizes the version of the standard used to write the tag. For convenience, the class also converts all texts by default to UTF-8. When you write a new tag from the scratch, the class defaults to the newest version 4.0. You can change this behaviour by giving an options array to the constructor as shown below.
 
-<font color="red">*WARNING*. Neither Microsoft Windows 7 nor Microsoft Windows Media Player 9 can read ID3v2.4 tags. If you plan on keeping compatibility with these you need to use ID3v2.3 tags!</font>
+<font color="red">*WARNING*. Neither Microsoft Windows 7 nor Microsoft Windows Media Player 9 can read ID3v2.4 tags. If you plan on keeping compatibility with these you need to use ID3v2.3 tags! Also read the note on frame compatibility below!</font>
 
 {{{
 <?php
 require_once 'Zend/Media/Id3v2.php'; // or using autoload
 
 $id3 = new Zend_Media_Id3v2(array("version" => 3.0, "encoding" => Zend_Media_Id3_Encoding::ISO88591));
+                                       // version option only works for new tag instances
+                                       // and changing the existing tag version must be
+                                       // done manually (see below)
 $id3->tyer->text = "2000";
 $id3->write();                         // write ID3v2.3.0 compliant tag in ISO-8859-1
                                        // encoding instead of the default UTF-8 which is
@@ -290,5 +307,12 @@ $id3 = new Zend_Media_Id3v2("file.mp3", array("encoding" => Zend_Media_Id3_Encod
 $id3->getHeader()->setVersion(3.0);
 $id3->write();                         // write ID3v2.3.0 compliant tag
 }}}
+
+*Please note:* Setting the header version explicitly to 3.0/4.0 might not be sufficient in terms of converting the tag to another version.
+
+Your file might contain frames deprecated in the 4.0 version of the standard. Such frames, marked also with annotation @deprecated ID3v2.3.0, comprise: IPLS, TDAT, TSIZ, TRDA, TIME, TYER, EQUA, TORY, and RVAD. Your file might also contain frames that are only defined in the 4.0 version of the standard. Such frames, marked also with annotation @since ID3v2.4.0, comprise: TDOR, TPRO, TSOP, RVA2, TIPL, TSOA, SIGN, ASPI, TDTG, TSOT, TSST, TMOO, TMCL, SEEK, EQU2, TDEN, TDRL, and TDRC. All such frames needs to be manually treated to assure the integrity of the tag.
+
+Should you write a comprehensive conversion code, please think about contributing back to the project by submitting a feature request for its addition into the library.
+
 
 See the class documentation found in the source package for the documentation for all the available tag frames and their fields. Also, leave a comment if you come up with an idea for an example that would be nice to have added here!
