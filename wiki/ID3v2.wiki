@@ -257,7 +257,7 @@ foreach (glob($directory . "/*.mp3") as $file) {
     $id3->txxx->text = "Edited by PHP Reader http://php-reader.googlecode.com/";
 
     // Finally, write changes back to the original file
-    $id3->write();
+    $id3->write(null);
     // ..or to an another file
     $id3->write("another/directory/" . basename($file));
     // ..or both
@@ -288,7 +288,7 @@ $id3 = new Zend_Media_Id3v2(array("version" => 3.0, "encoding" => Zend_Media_Id3
                                        // and changing the existing tag version must be
                                        // done manually (see below)
 $id3->tyer->text = "2000";
-$id3->write();                         // write ID3v2.3.0 compliant tag in ISO-8859-1
+$id3->write(null);                     // write ID3v2.3.0 compliant tag in ISO-8859-1
                                        // encoding instead of the default UTF-8 which is
                                        // not supported in ID3v2.3.0
 }}}
@@ -305,7 +305,7 @@ $id3 = new Zend_Media_Id3v2("file.mp3", array("encoding" => Zend_Media_Id3_Encod
                                        // not supported in ID3v2.3.0
 
 $id3->getHeader()->setVersion(3.0);
-$id3->write();                         // write ID3v2.3.0 compliant tag
+$id3->write(null);                     // write ID3v2.3.0 compliant tag
 }}}
 
 *Please note:* Setting the header version explicitly to 3.0/4.0 might not be sufficient in terms of converting the tag to another version.
