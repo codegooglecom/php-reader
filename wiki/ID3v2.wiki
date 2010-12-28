@@ -11,7 +11,7 @@ The `Zend_Media_Id3v2` class provides *a full implementation* of the ID3v2.3.0 a
 http://php-reader.googlegroups.com/web/reader.classdiagram.id3v2.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
-  * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/ID3v2.php
+  * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Id3v2.php
   * _Requirements:_
     * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Io package
     * <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Id3/Object.php
@@ -274,7 +274,49 @@ foreach (glob($directory . "/*.mp3") as $file) {
 
 One can run the script from a command prompt or terminal.
 
-===Example #7: Version juggling===
+===Example #7: Case study: How to rename files based on ID3 tags===
+Another popular use case of bulk editing files is to rename the files based on values in the ID3 tag frames. Similarly to the last example, we go through all the files of a directory. For each file, we read the ID3 tag frames to get needed values for the new file name, and finally, the file is renamed.
+
+{{{
+<?php
+require_once 'Zend/Media/Id3v2.php'; // or using autoload
+require_once 'Zend/Media/Id3/Exception.php';
+
+$directory = "../change/path/to/mp3/directory/here";
+
+/* Retrieve all files in the directory */
+foreach (glob($directory . "/*.mp3") as $file) {
+  echo "Reading " . $file . "\n";
+
+  /* Attempt to rename the file, catching any exceptions */
+  try {
+    $id3 = new Zend_Media_Id3v2($file);
+
+    $fileparts = array
+        (str_pad($id3->trck->number, 2, '0', STR_PAD_LEFT),
+         str_replace(array('"', '\'', ' '), array('', '', '_'), strtolower($id3->tpe1->text)),
+         str_replace(array('"', '\'', ' '), array('', '', '_'), strtolower($id3->tit2->text)));
+
+    $newfile = implode('-', $fileparts) . '.mp3';
+
+    // Unset ID3v2 object instance to remove the read lock on the file
+    unset($id3);
+
+    rename($file, dirname($file) . DIRECTORY_SEPARATOR . $newfile);
+
+    echo "  Renamed successfully '" . basename($file) . "' => '" . $newfile . "'!\n";
+  }
+  catch (Zend_Media_Id3_Exception $e) {
+    echo "  " . $e->getMessage() . "\n";
+    continue;
+  }
+}
+?>
+}}}
+
+One can run the script from a command prompt or terminal.
+
+===Example #8: Version juggling===
 By default, the `Zend_Media_Id3v2` class recognizes the version of the standard used to write the tag. For convenience, the class also converts all texts by default to UTF-8. When you write a new tag from the scratch, the class defaults to the newest version 4.0. You can change this behaviour by giving an options array to the constructor as shown below.
 
 <font color="red">*WARNING*. Neither Microsoft Windows 7 nor Microsoft Windows Media Player 9 can read ID3v2.4 tags. If you plan on keeping compatibility with these you need to use ID3v2.3 tags! Also read the note on frame compatibility below!</font>
@@ -315,4 +357,8 @@ Your file might contain frames deprecated in the 4.0 version of the standard. Su
 Should you write a comprehensive conversion code, please think about contributing back to the project by submitting a feature request for its addition into the library.
 
 
-See the class documentation found in the source package for the documentation for all the available tag frames and their fields. Also, leave a comment if you come up with an idea for an example that would be nice to have added here!
+
+
+See the class documentation found in the source package for the documentation for all the available tag frames and their fields.
+
+*Also, leave a comment if you come up with an idea for an example that would be nice to have added here!*
