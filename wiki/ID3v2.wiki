@@ -216,7 +216,7 @@ foreach (glob($directory . "/*.mp3") as $file) {
     echo "  Found a cover image, writing image data to a separate file..\n";
     
     /* Write the image */
-    $type = split("/", $id3->apic->mimeType, 2);
+    $type = explode("/", $id3->apic->mimeType, 2);
     if (($handle = fopen
          ($image = $file . "." . $type[1], "wb")) !== false) {
       if (fwrite($handle, $id3->apic->imageData,
