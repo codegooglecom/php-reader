@@ -319,13 +319,13 @@ One can run the script from a command prompt or terminal.
 ===Example #8: Version juggling===
 By default, the `Zend_Media_Id3v2` class recognizes the version of the standard used to write the tag. For convenience, the class also converts all texts by default to UTF-8. When you write a new tag from the scratch, the class defaults to the newest version 4.0. You can change this behaviour by giving an options array to the constructor as shown below.
 
-<font color="red">*WARNING*. Neither Microsoft Windows 7 nor Microsoft Windows Media Player 9 can read ID3v2.4 tags. If you plan on keeping compatibility with these you need to use ID3v2.3 tags! Also read the note on frame compatibility below!</font>
+<font color="red">*WARNING*. Neither Microsoft Windows 7 nor Microsoft Windows Media Player 9 can read ID3v2.4 tags. If you plan on keeping compatibility with these you need to use ID3v2.3 tags! Furthermore, unsynchronization do not seem to be supported for ID3v2.3 tags either, so use additional <i>compat</i> option to disable automatic unsynchronization on a tag. Also read the note on frame compatibility below!</font>
 
 {{{
 <?php
 require_once 'Zend/Media/Id3v2.php'; // or using autoload
 
-$id3 = new Zend_Media_Id3v2(array("version" => 3.0, "encoding" => Zend_Media_Id3_Encoding::ISO88591));
+$id3 = new Zend_Media_Id3v2(array("version" => 3.0, "encoding" => Zend_Media_Id3_Encoding::ISO88591, "compat" => true));
                                        // version option only works for new tag instances
                                        // and changing the existing tag version must be
                                        // done manually (see below)
@@ -341,7 +341,7 @@ It is also possible to change the version information on a read tag. However, yo
 <?php
 require_once 'Zend/Media/Id3v2.php'; // or using autoload
 
-$id3 = new Zend_Media_Id3v2("file.mp3", array("encoding" => Zend_Media_Id3_Encoding::ISO88591);
+$id3 = new Zend_Media_Id3v2("file.mp3", array("encoding" => Zend_Media_Id3_Encoding::ISO88591, "compat" => true);
                                        // read any version of the tag in ISO-8859-1
                                        // encoding instead of the default UTF-8 which is
                                        // not supported in ID3v2.3.0
