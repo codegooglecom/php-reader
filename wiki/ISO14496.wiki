@@ -1,5 +1,6 @@
 #summary The Programmer's Reference Guide: Zend_Media_Iso14496 Class
-#labels Phase-Implementation
+#labels Phase-Implementation,ISO14496
+#sidebar Sidebar
 
 =PHP Reader Documentation: !Zend_Media_Iso14496 Class=
 By [http://code.google.com/u/svollbehr/ svollbehr]
