@@ -1,5 +1,6 @@
 #summary The Programmer's Reference Guide: Zend_Media_Asf Class
-#labels Phase-Implementation
+#labels Phase-Implementation,ASF
+#sidebar Sidebar
 
 =PHP Reader Documentation: !Zend_Media_Asf Class=
 By [http://code.google.com/u/wphilipw/ wphilipw], [http://code.google.com/u/svollbehr/ svollbehr]
