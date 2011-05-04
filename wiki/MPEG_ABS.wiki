@@ -1,5 +1,6 @@
 #summary The Programmer's Reference Guide: Zend_Media_Mpeg_Abs Class
 #labels Phase-Implementation
+#sidebar Sidebar
 
 =PHP-Reader Documentation: !Zend_Media_Mpeg_Abs Class=
 By [http://code.google.com/u/svollbehr/ svollbehr]
