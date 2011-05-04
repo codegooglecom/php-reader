@@ -1,5 +1,6 @@
 #summary The Programmer's Reference Guide: Zend_Mime_Magic Class
-#labels Phase-Implementation
+#labels Phase-Implementation,Magic
+#sidebar Sidebar
 
 =PHP Reader Documentation: !Zend_Mime_Magic Class=
 By [http://code.google.com/u/svollbehr/ svollbehr]
