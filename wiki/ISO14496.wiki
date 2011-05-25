@@ -342,7 +342,7 @@ if (isset($isom->moov->udta->meta->id32)) {
   $id3 =& $isom->moov->udta->meta->id32->tag;
   $id3->talb->text = "My album too";
 
-  $isom->write();
+  $isom->write(null);
 }
 }}}
 
