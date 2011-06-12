@@ -48,7 +48,7 @@ $artist = $vorbisComment->getArtist();  // contains the first song artist
 $vendor = $vorbisComment->getVendor();  // contains the software information
 }}}
 
-As already so familiar from the `[ID3v1 Zend_Media_Id3v1]` and `[ID3v2 Zend_Media_Id3v2]` classes, the `Zend_Media_Vorbis` class also supports shorthands for retrieving and assigning comment fields. The above code could also be written as shown below.
+As already so familiar from the [ID3v1 Zend_Media_Id3v1] and [ID3v2 Zend_Media_Id3v2] classes, the `Zend_Media_Vorbis` class also supports shorthands for retrieving and assigning comment fields. The above code could also be written as shown below.
 
 {{{
 <?php
