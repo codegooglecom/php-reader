@@ -38,7 +38,7 @@ $ogg = new Zend_Media_Ogg_Reader("file.ogg");
 $ogg->read(bytes);
 }}}
 
-OK, not quite so helpful yet. However, when combined to `[Vorbis Zend_Media_Vorbis]` class, you may read Vorbis encoded data from Ogg container bitstream.
+OK, not quite so helpful yet. However, when combined to [Vorbis Zend_Media_Vorbis] class, you may read Vorbis encoded data from Ogg container bitstream.
 
 ==Further Reading==
 See the class documentation found in the source package for the documentation for all the classes and their methods.
