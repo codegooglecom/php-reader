@@ -1,5 +1,5 @@
 #summary The Programmer's Reference Guide: Zend_Media_Vorbis Class
-#labels Phase-Implementation
+#labels Phase-Implementation,Vorbis
 #sidebar Sidebar
 
 =PHP-Reader Documentation: !Zend_Media_Vorbis Class=
