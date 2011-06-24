@@ -9,9 +9,9 @@
     * [FLAC Zend_Media_Flac] Class
     * [ID3v1 Zend_Media_Id3v1] Class
     * [ID3v2 Zend_Media_Id3v2] Class
+    * [ISO14496 Zend_Media_Iso14496] Class
     * [MPEG_ABS Zend_Media_Mpeg_Abs] Class
     * [MPEG_PS Zend_Media_Mpeg_Ps] Class
-    * [ISO14496 Zend_Media_Iso14496] Class
     * [Ogg Zend_Media_Ogg] Class
     * [Vorbis Zend_Media_Vorbis] Class
   * !Zend_Mime Package
