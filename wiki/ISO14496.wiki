@@ -122,17 +122,17 @@ There are two non-standard extensions to the ISO 14496 standard that add the abi
 || || || || || ©ART || Name of the artist ||
 || || || || || aART || Name of the album artist ||
 || || || || || ©alb || Name of the album ||
+|| || || || || ©wrt || Name of the composer ||
+|| || || || || ©enc || Name of the encoder ||
 || || || || || ©grp || Grouping ||
 || || || || || ©day || Year of publication ||
 || || || || || trkn || Track number (number/total) ||
 || || || || || disk || Disk number (number/total) ||
 || || || || || tmpo || BPM tempo ||
-|| || || || || ©wrt || Name of the composer ||
 || || || || || ©cmt || Comments ||
 || || || || || ©gen || Genre as string ||
 || || || || || gnre || Genre as an ID3v1 code, added by one ||
 || || || || || cpil || Part of a compilation (0/1) ||
-|| || || || || tvsh || Name of the (television) show ||
 || || || || || sonm || Sort name of the track ||
 || || || || || soar || Sort name of the artist ||
 || || || || || soaa || Sort name of the album artist ||
@@ -142,7 +142,249 @@ There are two non-standard extensions to the ISO 14496 standard that add the abi
 || || || || || ©lyr || Lyrics ||
 || || || || || covr || Cover (or other) artwork binary data ||
 || || || || || ©too || Information about the software ||
+|| || || || || tvsh || TV show name ||
+|| || || || || tvsn || TV season ||
+|| || || || || tves || TV episode ||
+|| || || || || tven || TV episode ID ||
+|| || || || || tvnn || TV network ||
+|| || || || || desc || Description ||
+|| || || || || ldes || Long description ||
+|| || || || || purd || Purchase date||
+|| || || || || pcst || Podcast (0/1) ||
+|| || || || || purl || Podcast URL ||
+|| || || || || keyw || Podcast	keywords ||
+|| || || || || catg || Podcast category ||
+|| || || || || hdvd || High definition video (0/1) ||
+|| || || || || stik || Media type ||
+|| || || || || rtng || Content rating ||
+|| || || || || pgap || Gapless playback (0/1) ||
+|| || || || || geID || iTunes TV Genre ID ||
+|| || || || || cnID || iTunes movie genre ID ||
+|| || || || || apID || iTunes account used for purchase ||
+|| || || || || akID || iTunes account type ||
+|| || || || || sfID || iTunes country code ||
+|| || || || || atID || Artist ID (uniquely identifies the artist in the "©ART" atom) ||
+|| || || || || plID || Album ID (uniquely identifies the album in the "©alb" atom) ||
+|| || || || || cprt || _Copyright Box_ ||
 || || || || id32 || || _The ID3v2 Tag Box_ ||
+
+All the iTunes tags are technically using the same box called the _Data Box_. Due to this, their API is restricted to only getting and setting the values and does not offer value conversion tables for certain tags. You may use the following tables to convert some of the tags into readable text.
+
+====gnre====
+|| 1 || Blues ||
+|| 2 || Classic Rock ||
+|| 3 || Country ||
+|| 4 || Dance ||
+|| 5 || Disco ||
+|| 6 || Funk ||
+|| 7 || Grunge ||
+|| 8 || Hip-Hop ||
+|| 9 || Jazz ||
+|| 10 || Metal ||
+|| 11 || New Age ||
+|| 12 || Oldies ||
+|| 13 || Other ||
+|| 14 || Pop ||
+|| 15 || R&B ||
+|| 16 || Rap ||
+|| 17 || Reggae ||
+|| 18 || Rock ||
+|| 19 || Techno ||
+|| 20 || Industrial ||
+|| 21 || Alternative ||
+|| 22 || Ska ||
+|| 23 || Death Metal ||
+|| 24 || Pranks ||
+|| 25 || Soundtrack ||
+|| 26 || Euro-Techno ||
+|| 27 || Ambient ||
+|| 28 || Trip-Hop ||
+|| 29 || Vocal ||
+|| 30 || Jazz+Funk ||
+|| 31 || Fusion ||
+|| 32 || Trance ||
+|| 33 || Classical ||
+|| 34 || Instrumental ||
+|| 35 || Acid ||
+|| 36 || House ||
+|| 37 || Game ||
+|| 38 || Sound Clip ||
+|| 39 || Gospel ||
+|| 40 || Noise ||
+|| 41 || AlternRock ||
+|| 42 || Bass ||
+|| 43 || Soul ||
+|| 44 || Punk ||
+|| 45 || Space ||
+|| 46 || Meditative ||
+|| 47 || Instrumental Pop ||
+|| 48 || Instrumental Rock ||
+|| 49 || Ethnic ||
+|| 50 || Gothic ||
+|| 51 || Darkwave ||
+|| 52 || Techno-Industrial ||
+|| 53 || Electronic ||
+|| 54 || Pop-Folk ||
+|| 55 || Eurodance ||
+|| 56 || Dream ||
+|| 57 || Southern Rock ||
+|| 58 || Comedy ||
+|| 59 || Cult ||
+|| 60 || Gangsta ||
+|| 61 || Top 40 ||
+|| 62 || Christian Rap ||
+|| 63 || Pop/Funk ||
+|| 64 || Jungle ||
+|| 65 || Native American ||
+|| 66 || Cabaret ||
+|| 67 || New Wave ||
+|| 68 || Psychadelic ||
+|| 69 || Rave ||
+|| 70 || Showtunes ||
+|| 71 || Trailer ||
+|| 72 || Lo-Fi ||
+|| 73 || Tribal ||
+|| 74 || Acid Punk ||
+|| 75 || Acid Jazz ||
+|| 76 || Polka ||
+|| 77 || Retro ||
+|| 78 || Musical ||
+|| 79 || Rock & Roll ||
+|| 80 || Hard Rock ||
+|| 81 || Folk ||
+|| 82 || Folk-Rock ||
+|| 83 || National Folk ||
+|| 84 || Swing ||
+|| 85 || Fast Fusion ||
+|| 86 || Bebob ||
+|| 87 || Latin ||
+|| 88 || Revival ||
+|| 89 || Celtic ||
+|| 90 || Bluegrass ||
+|| 91 || Avantgarde ||
+|| 92 || Gothic Rock ||
+|| 93 || Progressive Rock ||
+|| 94 || Psychedelic Rock ||
+|| 95 || Symphonic Rock ||
+|| 96 || Slow Rock ||
+|| 97 || Big Band ||
+|| 98 || Chorus ||
+|| 99 || Easy Listening ||
+|| 100 || Acoustic ||
+|| 101 || Humour ||
+|| 102 || Speech ||
+|| 103 || Chanson ||
+|| 104 || Opera ||
+|| 105 || Chamber Music ||
+|| 106 || Sonata ||
+|| 107 || Symphony ||
+|| 108 || Booty Bass ||
+|| 109 || Primus ||
+|| 110 || Porn Groove ||
+|| 111 || Satire ||
+|| 112 || Slow Jam ||
+|| 113 || Club ||
+|| 114 || Tango ||
+|| 115 || Samba ||
+|| 116 || Folklore ||
+|| 117 || Ballad ||
+|| 118 || Power Ballad ||
+|| 119 || Rhythmic Soul ||
+|| 120 || Freestyle ||
+|| 121 || Duet ||
+|| 122 || Punk Rock ||
+|| 123 || Drum Solo ||
+|| 124 || A capella ||
+|| 125 || Euro-House ||
+|| 126 || Dance Hall ||
+|| 256 || Unknown ||
+
+====stik====
+|| 0 || Movie ||
+|| 1 || Music ||
+|| 2 || Audiobook ||
+|| 6 || Music Video ||
+|| 9 || Short Film ||
+|| 10 || TV Show ||
+|| 11 || Booklet ||
+|| 14 || Ringtone ||
+
+====rtng====
+|| 0 || None ||
+|| 2 || Clean ||
+|| 4 || Explicit ||
+
+====geID====
+|| 4000 || Comedy ||
+|| 4001 || Drama ||
+|| 4002 || Animation ||
+|| 4003 || Action & Adventure ||
+|| 4004 || Classic ||
+|| 4005 || Kids ||
+|| 4005 || Nonfiction ||
+|| 4007 || Reality TV ||
+|| 4008 || Sci-Fi & Fantasy ||
+|| 4009 || Sports ||
+|| 4010 || Teens ||
+|| 4011 || Latino TV ||
+
+====cnID====
+|| 4401 || Action & Adventure ||
+|| 4402 || Anime ||
+|| 4403 || Classics ||
+|| 4404 || Comedy ||
+|| 4405 || Documentary ||
+|| 4406 || Drama ||
+|| 4407 || Foreign ||
+|| 4408 || Horror ||
+|| 4409 || Independent ||
+|| 4410 || Kids & Family ||
+|| 4411 || Musicals ||
+|| 4412 || Romance ||
+|| 4413 || Sci-Fi & Fantasy ||
+|| 4414 || Short Films ||
+|| 4415 || Special Interest ||
+|| 4416 || Thriller ||
+|| 4417 || Sports ||
+|| 4418 || Western ||
+|| 4419 || Urban ||
+|| 4420 || Holiday ||
+|| 4421 || Made for TV ||
+|| 4422 || Concert Films ||
+|| 4423 || Music Documentaries ||
+|| 4424 || Music Feature Films ||
+|| 4425 || Japanese Cinema ||
+|| 4426 || Jidaigeki ||
+|| 4427 || Tokusatsu ||
+|| 4428 || Korean Cinema ||
+
+====akID====
+|| 0 || iTunes ||
+|| 1 || AOL ||
+
+====sfID====
+|| 143441 || United States ||
+|| 143442 || France ||
+|| 143443 || Germany ||
+|| 143444 || United Kingdom ||
+|| 143445 || Austria ||
+|| 143446 || Belgium ||
+|| 143447 || Finland ||
+|| 143448 || Greece ||
+|| 143449 || Ireland ||
+|| 143450 || Italy ||
+|| 143451 || Luxembourg ||
+|| 143452 || Netherlands ||
+|| 143453 || Portugal ||
+|| 143454 || Spain ||
+|| 143455 || Canada ||
+|| 143456 || Sweden ||
+|| 143457 || Norway ||
+|| 143458 || Denmark ||
+|| 143459 || Switzerland ||
+|| 143460 || Australia ||
+|| 143461 || New Zealand ||
+|| 143462 || Japan ||
 
 ==Examples==
 
