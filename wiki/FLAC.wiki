@@ -15,7 +15,7 @@ FLAC stands out as the fastest and most widely supported lossless audio codec, a
 The class is capable of only reading metadata blocks. The class is unable to read or decode the audio data frames. You may, however, implement this functionality on top of what this class provides.
 
 ==Class Information==
-http://php-reader.googlegroups.com/web/reader.classdiagram.flac.png
+http://php-reader.googlecode.com/svn/trunk/model/model.flac.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
   * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Flac.php

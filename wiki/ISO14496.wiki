@@ -15,7 +15,7 @@ The file structure is object-oriented; a file can be decomposed into constituent
 The ISO Base Media File Format is a base format for media file formats such as Apple !QuickTime, Apple iTunes AAC, and MPEG-4 Video. The class is capable of parsing all the file information.
 
 ==Class Information==
-http://php-reader.googlegroups.com/web/reader.classdiagram.iso1449.png
+http://php-reader.googlecode.com/svn/trunk/model/model.iso14496.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
   * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Iso14496.php
@@ -125,12 +125,12 @@ There are two non-standard extensions to the ISO 14496 standard that add the abi
 || || || || || ©wrt || Name of the composer ||
 || || || || || ©enc || Name of the encoder ||
 || || || || || ©grp || Grouping ||
+|| || || || || ©cmt || Comments ||
+|| || || || || ©gen || Genre as string ||
 || || || || || ©day || Year of publication ||
 || || || || || trkn || Track number (number/total) ||
 || || || || || disk || Disk number (number/total) ||
 || || || || || tmpo || BPM tempo ||
-|| || || || || ©cmt || Comments ||
-|| || || || || ©gen || Genre as string ||
 || || || || || gnre || Genre as an ID3v1 code, added by one ||
 || || || || || cpil || Part of a compilation (0/1) ||
 || || || || || sonm || Sort name of the track ||
@@ -146,14 +146,15 @@ There are two non-standard extensions to the ISO 14496 standard that add the abi
 || || || || || tvsn || TV season ||
 || || || || || tves || TV episode ||
 || || || || || tven || TV episode ID ||
-|| || || || || tvnn || TV network ||
+|| || || || || tvnn || TV network (hidden in iTunes) ||
 || || || || || desc || Description ||
-|| || || || || ldes || Long description ||
+|| || || || || ldes || Long description (hidden in iTunes) ||
 || || || || || purd || Purchase date||
 || || || || || pcst || Podcast (0/1) ||
 || || || || || purl || Podcast URL ||
-|| || || || || keyw || Podcast	keywords ||
-|| || || || || catg || Podcast category ||
+|| || || || || keyw || Podcast keywords (hidden in iTunes) ||
+|| || || || || catg || Podcast category (hidden in iTunes) ||
+|| || || || || egid || Podcast GUID (hidden in iTunes) ||
 || || || || || hdvd || High definition video (0/1) ||
 || || || || || stik || Media type ||
 || || || || || rtng || Content rating ||

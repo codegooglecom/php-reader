@@ -15,7 +15,7 @@ The ASF file consists of code blocks that are called content objects. Each of th
 The Advanced Systems Format is a base format for media file formats such as Microsoft Windows Audio (WMA) and Microsoft Windows Video (WMV). The `Zend_Media_Asf` class is capable of parsing all the file information.
 
 ==Class Information==
-http://php-reader.googlegroups.com/web/reader.classdiagram.asf.png
+http://php-reader.googlecode.com/svn/trunk/model/model.asf.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
   * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Asf.php

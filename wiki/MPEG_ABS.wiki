@@ -8,7 +8,7 @@ By [http://code.google.com/u/svollbehr/ svollbehr]
 ==Introduction==
 The `Zend_Media_Mpeg_Abs` class provides *a full implementation* of the MPEG Audio Bit Stream encoding format defined in MPEG-1 Audio (ISO/IEC 11172-3) and MPEG-2 Audio (ISO/IEC 13818-3) standards.
 
-http://php-reader.googlegroups.com/web/reader.aux.mpeg-explained.png
+http://php-reader.googlecode.com/svn/trunk/model/model.mpeg-explained.png
 
 The MPEG Audio Bit Stream is a digital audio encoding format using a form of lossy data compression. The audio bit stream comprises of data segments called the frames which all have a header and some audio data associated with them. By examining the header information, one may receive more information about the whole audio bit stream.
 
@@ -21,7 +21,7 @@ Support for non-standard VBR header extensions or namely the XING, VBRI and LAME
 The class is capable of only reading bit stream information. Furthermore, the class is unable to decode the audio data found in the frames. You may, however, implement this functionality on top of what this class provides.
 
 ==Class Information==
-http://php-reader.googlegroups.com/web/reader.classdiagram.mpeg_abs.png
+http://php-reader.googlecode.com/svn/trunk/model/model.mpeg.abs.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
   * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Mpeg/Abs.php

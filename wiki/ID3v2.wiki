@@ -9,7 +9,7 @@ By [http://code.google.com/u/wphilipw/ wphilipw], [http://code.google.com/u/svol
 The `Zend_Media_Id3v2` class provides *a full implementation* of the ID3v2.3.0 and ID3v2.4.0 standards as defined by [http://www.id3.org/ ID3.org]. The ID3 tag can be used with various files including MPEG Layer III, or MP3 files. The class is capable of both reading and writing tag information.
 
 ==Class Information==
-http://php-reader.googlegroups.com/web/reader.classdiagram.id3v2.png
+http://php-reader.googlecode.com/svn/trunk/model/model.id3v2.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
   * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Id3v2.php

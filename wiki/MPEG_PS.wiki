@@ -8,14 +8,14 @@ By [http://code.google.com/u/svollbehr/ svollbehr]
 ==Introduction==
 The `Zend_Media_Mpeg_Ps` class provides partial implementation of the MPEG Program Stream defined in MPEG-1 Systems (ISO/IEC 11172-1) and MPEG-2 Systems (ISO/IEC 13818-1) standards.
 
-http://php-reader.googlegroups.com/web/reader.aux.mpeg-explained.png
+http://php-reader.googlecode.com/svn/trunk/model/model.mpeg-explained.png
 
 Program streams are used in MPEG video files, DVD video discs and HD DVD video discs.
 
 The current implementation supports only parsing of the play duration.
 
 ==Class Information==
-http://php-reader.googlegroups.com/web/reader.classdiagram.mpeg_ps.png
+http://php-reader.googlecode.com/svn/trunk/model/model.mpeg.ps.png
 
   * _Documentation location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/docs/ or [http://php-reader.googlecode.com/svn/docs/index.html online here]
   * _Source location:_ <[http://code.google.com/p/php-reader/downloads/list package]>/src/Zend/Media/Mpeg/Ps.php
