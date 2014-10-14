@@ -62,7 +62,11 @@ $artist = $flac->getVorbisComment()->getArtist();  // contains the first song ar
 $vendor = $flac->getVorbisComment()->getVendor();  // contains the software information
 
 // Extract file information
-$sampleRate = $flac->getStreaminfo()->getSampleRate();
+$sampleRate = $flac->getStreaminfo()->getSampleRate(); // e.g. 44100Hz
+$numberOfSamples = $flac->getStreaminfo()->getNumberOfSamples();
+
+// Calculate file play time
+$playtimeInSeconds = $numberOfSamples / $sampleRate;
 }}}
 
 `Zend_Media_Flac` uses the same class for reading the Vorbis Comments as the `Zend_Media_Vorbis` class does. Hence, please see the [Vorbis Zend_Media_Vorbis] class documentation for more about how to read Vorbis Comments.
@@ -88,6 +92,11 @@ $vendor = $flac->vorbisComment->vendor;  // contains the software information
 
 // Extract file information
 $sampleRate = $flac->streaminfo->sampleRate; // e.g. 44100Hz
+$numberOfSamples = $flac->streaminfo->numberOfSamples;
+
+// Calculate file play time
+$playtimeInSeconds = $numberOfSamples / $sampleRate;
+
 }}}
 
 ==Further Reading==
